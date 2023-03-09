@@ -57,7 +57,7 @@ public class TableService {
 
     }
 
-    public void addNewTable(TableRequest request) {
+    public Long createTable(TableRequest request) {
         Optional<Table> tableOptional = repository.findByNumber(request.number());
         if (tableOptional.isPresent()) {
             throw new ApiRequestException(HttpStatus.BAD_REQUEST,"this table number already exists!");
@@ -66,7 +66,7 @@ public class TableService {
                 .number(request.number())
                 .capacity(request.capacity())
                 .build();
-        repository.save(table);
+        return repository.save(table).getId();
     }
 
 

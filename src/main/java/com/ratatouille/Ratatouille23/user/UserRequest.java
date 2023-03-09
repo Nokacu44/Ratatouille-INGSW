@@ -2,6 +2,7 @@ package com.ratatouille.Ratatouille23.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
 
 public record UserRequest (
         String firstName,

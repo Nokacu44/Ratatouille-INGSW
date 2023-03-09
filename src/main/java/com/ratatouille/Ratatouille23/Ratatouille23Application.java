@@ -11,5 +11,4 @@ public class Ratatouille23Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Ratatouille23Application.class, args);
 	}
-
 }

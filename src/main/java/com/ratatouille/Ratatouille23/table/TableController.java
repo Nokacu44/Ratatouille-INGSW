@@ -42,7 +42,7 @@ public class TableController {
     @PreAuthorize(value = "hasAnyAuthority('ADMIN', 'SUPERVISOR')")
     @PostMapping()
     public void createTable(@RequestBody TableRequest request) {
-        service.addNewTable(request);
+        service.createTable(request);
     }
 
     @PreAuthorize(value = "hasAnyAuthority('ADMIN', 'SUPERVISOR')")

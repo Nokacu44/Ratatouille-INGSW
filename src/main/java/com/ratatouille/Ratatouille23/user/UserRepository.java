@@ -1,6 +1,7 @@
 package com.ratatouille.Ratatouille23.user;
 
 import com.ratatouille.Ratatouille23.order.Order;
+import lombok.NonNull;
 import org.apache.el.stream.Stream;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -19,4 +20,5 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
     default Optional<List<User>> searchUsers(String firstName, String lastName, String email, Role role) {
         return Optional.of(findAll(UserSpecification.searchUsers(firstName, lastName, email, role)));
     };
+
 }

@@ -1,5 +1,7 @@
 package com.ratatouille.Ratatouille23.user;
 
+import lombok.EqualsAndHashCode;
+
 public record UserResponse(
         Long id,
         String firstName,
