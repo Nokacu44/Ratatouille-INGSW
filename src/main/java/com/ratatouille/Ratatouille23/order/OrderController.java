@@ -43,6 +43,15 @@ public class OrderController {
     ) {
         return ResponseEntity.ok(service.getOrdersByAttributes(id, tableNumber, waiterName, cookName, waiterLastName, cookNameLastName, start, end , dishesNames));
     }
+
+    @PreAuthorize(value = "hasAnyAuthority('ADMIN', 'SUPERVISOR', 'COOK')")
+    @PutMapping("/{orderId}/complete")
+    public ResponseEntity<Long> completeOrder(
+            @NonNull @PathVariable("orderId") Long id,
+            @RequestParam(required = false) Long cookId
+    ) {
+        return ResponseEntity.ok(service.completeOrder(id, cookId));
+    }
     @PreAuthorize(value = "hasAnyAuthority('ADMIN', 'SUPERVISOR', 'WAITER')")
     @PostMapping
     public ResponseEntity<Long> createOrder(@RequestBody OrderRequest request) {

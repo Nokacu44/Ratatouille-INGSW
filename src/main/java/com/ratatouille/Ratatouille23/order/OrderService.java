@@ -131,4 +131,20 @@ public class OrderService {
         }
         repository.deleteById(id);
     }
+
+    @Transactional
+    public Long completeOrder(Long id, Long cookId) {
+        Order order = repository.findById(id)
+                .orElseThrow(() -> new ApiRequestException(HttpStatus.NOT_FOUND, "Order with id " + id + " does not exists!"));
+        if (cookId != null) {
+            User user = userRepository.findById(id).orElseThrow(() -> new ApiRequestException(HttpStatus.NOT_FOUND, "User with id " + id + " does not exists!"));
+            if (user.getRole().equals(Role.COOK)) {
+                order.setCook(user);
+            } else {
+                throw new ApiRequestException(HttpStatus.BAD_REQUEST, "This user is not a cook!");
+            }
+        }
+        order.setCompleted(LocalDateTime.now());
+        return order.getId();
+    }
 }

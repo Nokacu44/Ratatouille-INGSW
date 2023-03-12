@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -68,6 +69,15 @@ public class UserService {
                         .stream()
                         .map(userResponseMapper)
                         .collect(Collectors.toList()))
+                .orElseThrow(() ->  new ApiRequestException(HttpStatus.NOT_FOUND, "No user with this criteria found!"));
+
+    }
+
+    public Long countUsers(Long id, String firstName, String lastName, String email, Role role) {
+        if (id != null) {
+            return Stream.of(getById(id)).count();
+        }
+        return repository.countUsers(firstName, lastName, email, role)
                 .orElseThrow(() ->  new ApiRequestException(HttpStatus.NOT_FOUND, "No user with this criteria found!"));
     }
 

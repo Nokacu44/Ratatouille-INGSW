@@ -47,6 +47,17 @@ public class UserController {
         return ResponseEntity.ok(service.getUsersByAttributes(id, firstName, lastName, email, role));
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> countUsers(
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) Role role
+    ) {
+        return ResponseEntity.ok(service.countUsers(id, firstName, lastName, email, role));
+    }
+
     @GetMapping("/{userId}/orders")
     public ResponseEntity<List<OrderResponse>> getOrderByUser(
             @PathVariable("userId") Long id
