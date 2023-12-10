@@ -1,6 +1,5 @@
 package com.ratatouille.Ratatouille23.table;
 
-import org.apache.el.stream.Stream;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -19,4 +18,8 @@ public interface TableRepository extends JpaRepository<Table, Long>, JpaSpecific
     default Optional<List<Table>> searchTables(Integer number, Integer capacity) {
         return Optional.of(findAll(TableSpecification.searchTables(number, capacity)));
     }
+
+    default Optional<Long> countTables(Integer number, Integer capacity) {
+        return Optional.of(count(TableSpecification.searchTables(number, capacity)));
+    };
 }

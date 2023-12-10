@@ -10,6 +10,7 @@ public class UserSmallResponseMapper implements Function<User, UserSmallResponse
     public UserSmallResponse apply(User user) {
         return  new UserSmallResponse(
                 user.getId(),
+                user.getFirstName(),
                 user.getLastName()
         );
     }

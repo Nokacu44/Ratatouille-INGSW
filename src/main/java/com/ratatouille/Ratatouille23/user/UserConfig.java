@@ -35,8 +35,8 @@ public class UserConfig {
             User carmine = new User(
                     "carmine",
                     "arena",
-                    "carmine.arena@gmail.com",
-                    passwordEncoder.encode("pokerFace88100"),
+                    "arena@email.com",
+                    passwordEncoder.encode("123"),
                     Role.ADMIN
             );
 

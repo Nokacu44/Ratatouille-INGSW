@@ -1,6 +1,7 @@
 package com.ratatouille.Ratatouille23.table;
 
 import com.ratatouille.Ratatouille23.exception.ApiRequestException;
+import com.ratatouille.Ratatouille23.user.Role;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -67,6 +69,14 @@ public class TableService {
                 .capacity(request.capacity())
                 .build();
         return repository.save(table).getId();
+    }
+
+    public Long countTables(Long id, Integer number, Integer capacity) {
+        if (id != null) {
+            return Stream.of(getTableById(id)).count();
+        }
+        return repository.countTables(number, capacity)
+                .orElseThrow(() ->  new ApiRequestException(HttpStatus.NOT_FOUND, "No table with this criteria found!"));
     }
 
 

@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -69,6 +70,16 @@ public class OrderService {
                         .map(orderResponseMapper)
                         .collect(Collectors.toList()))
                 .orElseThrow(() -> new ApiRequestException(HttpStatus.NOT_FOUND, "no orders with this criteria found!"));
+    }
+
+    public Long countOrders(Long id, Integer tableNumber, String waiterName, String cookName,
+                            String waiterLastName, String cookNameLastName, LocalDateTime start,
+                            LocalDateTime end, List<String> dishesNames) {
+        if (id != null) {
+            return Stream.of(getOrdersByParameters(id, null, null, null, null)).count();
+        }
+        return repository.countOrders(tableNumber, waiterName, cookName, waiterLastName, cookNameLastName, start, end, dishesNames)
+                .orElseThrow(() ->  new ApiRequestException(HttpStatus.NOT_FOUND, "No orders with this criteria found!"));
     }
 
     public Long createOrder(OrderRequest request) {

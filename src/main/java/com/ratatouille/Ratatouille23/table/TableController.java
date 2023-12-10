@@ -1,5 +1,6 @@
 package com.ratatouille.Ratatouille23.table;
 
+import com.ratatouille.Ratatouille23.user.Role;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,14 @@ public class TableController {
         return ResponseEntity.ok(service.getTableByAttribute(id, number, capacity));
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> countTables(
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) Integer number,
+            @RequestParam(required = false) Integer capacity
+    ) {
+        return ResponseEntity.ok(service.countTables(id, number, capacity));
+    }
 
 
     @PreAuthorize(value = "hasAnyAuthority('ADMIN', 'SUPERVISOR')")

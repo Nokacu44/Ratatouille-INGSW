@@ -23,6 +23,13 @@ public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecific
                 cookLastName, start, end, dishesNames)));
     }
 
+    default Optional<Long> countOrders(Integer tableNumber, String waiterName, String cookName,
+                                                     String waiterLastName, String cookLastName, LocalDateTime start,
+                                                     LocalDateTime end, List<String> dishesNames) {
+        return Optional.of((long) findAll(OrderSpecification.searchOrders(tableNumber, waiterName, cookName, waiterLastName,
+                cookLastName, start, end, dishesNames)).size());
+    }
+
     @Query(value = "SELECT o FROM Order o " +
             "WHERE o.waiter.id IN (SELECT u.id FROM User u WHERE u.role = 'WAITER' and u.id = :id) " +
             "OR o.cook.id IN (SELECT u.id FROM User u WHERE u.role = 'COOK' and u.id = :id)")

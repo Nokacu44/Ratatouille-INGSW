@@ -19,7 +19,7 @@ public class OrderController {
     private final OrderService service;
 
     @GetMapping()
-    public ResponseEntity<List<OrderResponse>> getTables(
+    public ResponseEntity<List<OrderResponse>> getOrders(
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime timestamp,
             @RequestParam(required = false) Long tableId,
@@ -30,7 +30,7 @@ public class OrderController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<OrderResponse>> getTableByAttributes(
+    public ResponseEntity<List<OrderResponse>> getOrderByAttributes(
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) Integer tableNumber,
             @RequestParam(required = false) String waiterName,
@@ -43,6 +43,22 @@ public class OrderController {
     ) {
         return ResponseEntity.ok(service.getOrdersByAttributes(id, tableNumber, waiterName, cookName, waiterLastName, cookNameLastName, start, end , dishesNames));
     }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> countOrders(
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) Integer tableNumber,
+            @RequestParam(required = false) String waiterName,
+            @RequestParam(required = false) String cookName,
+            @RequestParam(required = false) String waiterLastName,
+            @RequestParam(required = false) String cookNameLastName,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end,
+            @RequestParam(required = false) List<String> dishesNames
+    ) {
+        return ResponseEntity.ok(service.countOrders(id, tableNumber, waiterName, cookName, waiterLastName, cookNameLastName, start, end , dishesNames));
+    }
+
 
     @PreAuthorize(value = "hasAnyAuthority('ADMIN', 'SUPERVISOR', 'COOK')")
     @PutMapping("/{orderId}/complete")
