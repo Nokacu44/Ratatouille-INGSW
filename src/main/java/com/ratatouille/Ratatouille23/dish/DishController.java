@@ -1,6 +1,7 @@
 package com.ratatouille.Ratatouille23.dish;
 
 import com.ratatouille.Ratatouille23.table.TableRequest;
+import com.ratatouille.Ratatouille23.user.UserRequest;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

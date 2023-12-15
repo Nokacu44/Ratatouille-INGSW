@@ -56,7 +56,6 @@ public class TableService {
                         .map(tableResponseMapper)
                         .collect(Collectors.toList()))
                 .orElseThrow(() -> new ApiRequestException(HttpStatus.NOT_FOUND, "No table with this criteria found!"));
-
     }
 
     public Long createTable(TableRequest request) {
