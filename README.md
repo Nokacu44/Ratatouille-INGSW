@@ -52,8 +52,8 @@ The application will start, and you can access it at http://localhost:8080
 ## Endpoints
 The API exposes a lot of different endpoints based on the resources avaible (*allergen*, *dish*, *order*, *table*, *user*) and they all follow the same url conventions
 The folowing endpoints are for managing the allergens:
-- **GET /api/v1/allergen**: returns all the allergens in the DB.
-##### Example Response
+### **GET /api/v1/allergen**: returns all the allergens in the DB.
+#### Example Response
 ```json
 {
   "id": 1,
