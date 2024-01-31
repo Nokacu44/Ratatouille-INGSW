@@ -57,7 +57,7 @@ The folowing endpoints are for managing the allergens:
 ```json
 {
   "id": 1,
-  "name": Gluten,
+  "name": "Gluten",
   "dishes": ["Margherita"]
 }
 ```
