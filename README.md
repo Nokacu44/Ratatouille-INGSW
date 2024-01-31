@@ -77,7 +77,20 @@ The folowing endpoints are for managing the allergens:
   "name": "Gluten",
   "dishes": ["Margherita","Pasta"],
 }
+```
 
+## Docker
+You can also run the application using Docker. Follow these steps:
+
+1. Build the Docker image:
+```bash
+  docker build -t Ratatouille-INGSW .
+```
+
+2. Run the Docker container:
+```bash
+  docker run -p 8080:8080 Ratatouille-INGSW
+```
 
 
 
