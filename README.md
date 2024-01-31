@@ -50,9 +50,33 @@ The application will start, and you can access it at http://localhost:8080
 
 
 ## Endpoints
-The API exposes a lot of different endpoints based on the resources avaible (*allergen*, *dish*, *order*, *table*, *user*)
-
-
+The API exposes a lot of different endpoints based on the resources avaible (*allergen*, *dish*, *order*, *table*, *user*) and they all follow the same url conventions
+The folowing endpoints are for managing the allergens:
+- **GET /api/v1/allergen**: returns all the allergens in the DB.
+##### Example Response
+```json
+{
+  "id": 1,
+  "name": Gluten,
+  "dishes": ["Margherita"]
+}
+```
+- **GET /api/v1/search{?id}{?name}{?dishes}**: search for allergen based on optional name or dishes that contains them, if the id is provided the corresponding allergen is returned.
+- **POST /api/v1/{allergenId}**: update an allergen (requires a json body with all informations).
+##### Example
+```json
+{
+  "name": "Gluten",
+}
+```
+- **DELETE /api/v1/{allergenId}**: delete an allergen.
+- **PUT /api/v1/{allergenId}**: update an allergen (requires a json body with all informations).
+##### Example
+```json
+{
+  "name": "Gluten",
+  "dishes": ["Margherita","Pasta"],
+}
 
 
 
