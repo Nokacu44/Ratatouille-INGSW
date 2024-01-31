@@ -61,17 +61,17 @@ The folowing endpoints are for managing the allergens:
   "dishes": ["Margherita"]
 }
 ```
-- **GET /api/v1/search{?id}{?name}{?dishes}**: search for allergen based on optional name or dishes that contains them, if the id is provided the corresponding allergen is returned.
-- **POST /api/v1/{allergenId}**: update an allergen (requires a json body with all informations).
-##### Example
+###  **GET /api/v1/search{?id}{?name}{?dishes}**: search for allergen based on optional name or dishes that contains them, if the id is provided the corresponding allergen is returned.
+###  **POST /api/v1/{allergenId}**: update an allergen (requires a json body with all informations).
+#### Example
 ```json
 {
   "name": "Gluten",
 }
 ```
-- **DELETE /api/v1/{allergenId}**: delete an allergen.
-- **PUT /api/v1/{allergenId}**: update an allergen (requires a json body with all informations).
-##### Example
+### **DELETE /api/v1/{allergenId}**: delete an allergen.
+###**PUT /api/v1/{allergenId}**: update an allergen (requires a json body with all informations).
+####  Example
 ```json
 {
   "name": "Gluten",
