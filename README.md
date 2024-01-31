@@ -43,8 +43,9 @@ Follow these steps to set up and run the project:
 
 ## Usage
 To run the Spring Boot application, execute the following command:
-   ```bash
+  ```bash
   java -jar Ratatouille23-0.0.1-SNAPSHOT.jar
+  ```
 The application will start, and you can access it at http://localhost:8080
 
 
